@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { FontAwesomIcon } from "@fortawesome/react-fontawesome"
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components";
 
 
@@ -44,7 +44,7 @@ function GlobalButton({
 const Wrapper = styled.div`
     width: ${(props) => props.width};
 `;
-const Icon = styled(FontAwesomIcon)`
+const Icon = styled(FontAwesomeIcon)`
     color: ${(props) => props.theme.mainColor};
     padding: 1rem 2rem;
 `;

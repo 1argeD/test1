@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Button from "../elements/GlobalButton"
 import GlobalModal from "../elements/GlobalModal";
+import InputResetButton from "../elements/buttons/InputResetButton"
 
 const SignupForm = () => {
     const dispatch = useDispatch();
@@ -165,14 +166,62 @@ const SignupForm = () => {
                     </TitleWrapper>
                     <Container>
                         <Label>아이디</Label>
-                    </Container>
+                        <InputWrapper>
+                            <Input
+                                text="text"
+                                tabIndex="2"
+                                className="input"
+                                onChange={() => onIdDuplicate(false)}
+                                {...register("userId", {
+                                    required: "아이디는 이메일 형식으로 적어주세요.",
+                                    pattern: {
+                                        value: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.[a-zA-Z]{2,4}$/,
+                                        message: "아이디는 이메일 형식으로 적어주세요."
+                                    },
+                                })}
+                                aria-invalid={
+                                    !isDirty ? undefined : errors.userId ? "true" : "false"
+                                }
+                                name="uerId"
+                            />
+                            {watch().userId === "" ? null : (
+                                <InputResetButton className="input-reset" onClick={onReset} />
+                            )}
+                            <ButtonWrapper>
+                                <Button
+                                    content={"중복체크"}
+                                    className="nickcheck-btn"
+                                    onClick={(event) => {
+                                        event.prevenDfault();
+                                        event.stopPropagation();
+                                        onDuplicateUserId();
+                                        onIdDuplicate((prev) => !prev);
+                                        onIdDoubleCheck(true);
+                                    }}
+                                    mobileWidth={"4.5rem"}
+                                    width={"5rem"}
+                                    height={"2.3rem"}
+                                    color={"gray"}
+                                    fontSize={"0.8rem"}
+                                    padding={"0.1rem"}
+                                ></Button>
+                            </ButtonWrapper>
+                            {errors.userId && (
+                                <HelperText2>{errors?.userId?.message}</HelperText2>
+                            )}
+                            {!errors.userId && (
+                                <HelperText2>아이디는 이메일 형식으로 적어주세요.</HelperText2>
+                            )}
+                        </InputWrapper>
+
+                    <Label>비밀번호</Label>
                     <InputWrapper>
                         <Input
                             type="password"
                             tabIndex="2"
                             className="input"
                             {...register("password",{
-                                required:"비밀번호는 숫자, 문자 조합",
+                                required:"비밀번호는 숫자, 문자 조합 6자리 이상으로 적어주세요.",
                                 pattern: {
                                     value: /^[A-Za-z0-9]{6,12}$/,
                                     message: "비밀번호는 숫자, 문자 조합 6자 이상 적어주세요.",
@@ -268,7 +317,7 @@ const SignupForm = () => {
                                 </HelperText>
                             )}
                     </InputWrapper>
-                <Container>
+                </Container>
                 <ButtonsWrapper>
                     <Button
                         content={"가입하기"}
@@ -278,7 +327,6 @@ const SignupForm = () => {
                         fontWeight={"900"}
                     ></Button>
                 </ButtonsWrapper>
-                </Container>
             </Form>
             </FormWapper>
         </>
