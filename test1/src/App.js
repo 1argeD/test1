@@ -1,6 +1,7 @@
-import './App.css';
 import { useEffect } from 'react';
-import { Routers } from "./routers/Routers";
+import Routers from "./routers/Routers";
+import jwt_decode from "jwt-decode"
+import { apis } from "./shared/axios"
 
 function App() {
   useEffect(() => {
@@ -9,24 +10,24 @@ function App() {
       try {
         const { exp } = jwt_decode(accessToken);
         if (Date.now() >= exp * 1000) {
-          // apis
-          //   // .post_reissue()
-          //   .then((response) => {
-          //     localStorage.removeItem("access-token");
-          //     localStorage.removeItem("refresh-token");
-          //     localStorage.setItem(
-          //       "accessToken",
-          //       response.headers.authorization
-          //     );
-          //     localStorage.setItem(
-          //       "refresh-token",
-          //       response.headers.refreshtoken
-          //     );
-          //   })
-          //   .catch((err) => {});
-          window.localStorage.removeItem("accessToken");
-          window.localStorage.removeItem("refresh-token");
-          window.localStorage.removeItem("user-info");
+          apis
+            // .post_reissue()
+            .then((response) => {
+              localStorage.removeItem("access-token");
+              localStorage.removeItem("refresh-token");
+              localStorage.setItem(
+                "accessToken",
+                response.headers.authorization
+              );
+              localStorage.setItem(
+                "refresh-token",
+                response.headers.refreshtoken
+              );
+            })
+            .catch((err) => {});
+          // window.localStorage.removeItem("accessToken");
+          // window.localStorage.removeItem("refresh-token");
+          // window.localStorage.removeItem("user-info");
         }
       } catch (e) {
         window.localStorage.removeItem("access-token")
