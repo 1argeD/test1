@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { appendErrors, useFrom, useWatch } from "react-hook-form"
+import { useFrom, useWatch } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux";
 import { 
     existMemberId, registerUser, existMemberNickname 
