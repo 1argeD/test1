@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../elements/GlobalButton";
+import Button from "../GlobalButton"
 
 const Modal = ({ onClose, content1, content2, onClick, name }) => {
   return (

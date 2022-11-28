@@ -19,12 +19,12 @@ const GlobalHeader2 = ({ IconType = "Home" }) => {
           )}
           {IconType === "Home" && <HomeIcon onClick={() => navigate("/")} />}
         </NavItem>
-        <NavItem onClick={() => onPathHandler("/")}>
+        {/* <NavItem onClick={() => onPathHandler("/")}>
           <Logo
             src={process.env.PUBLIC_URL + "/img/logo_gnb2@2x.png"}
             alt="멍냥마켓 로고"
           ></Logo>
-        </NavItem>
+        </NavItem> */}
         <NavItem></NavItem>
       </Navbar>
     </NavbarWrapper>
