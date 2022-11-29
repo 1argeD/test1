@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useFrom, useWatch } from "react-hook-form"
+import { useForm, useWatch } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux";
 import { 
     existMemberId, registerUser, existMemberNickname 
@@ -36,7 +36,7 @@ const SignupForm = () => {
         setValue,
         control,
         formState: { isDirty, errors },
-    } = useFrom({mode:"onChange", userId: "text"});
+    } = useForm({mode:"onChange", userId: "text"});
 
     const onSumbit = (event) => {
         if (watch().password !== watch.passwordConfirm) {
