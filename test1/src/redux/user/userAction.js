@@ -48,7 +48,7 @@ export const userLogin = createAsyncThunk(
                     },
                 };
                 const response = await axios.post(
-                    'http://localhost:8080.com/member/signup',
+                    'http://loclahost:8080/member/signup',
                     payload,
                     config
                 );

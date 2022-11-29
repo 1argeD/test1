@@ -5,7 +5,7 @@ import {
     logoutUser,
     existMemberId,
     existMemberNickname,
-} from './userAction';
+} from '../user/userAction';
 
 const inintialState = {
     loading : false,
