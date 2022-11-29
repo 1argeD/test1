@@ -84,7 +84,7 @@ const userSlice = createSlice({
             state.userToken = null;
             state.error = null;
         },
-        [logoutUser.rejected]: (staet, { payload }) => {
+        [logoutUser.rejected]: (state, { payload }) => {
             state.loading = false;
             state.error = payload;
         },
@@ -101,7 +101,24 @@ const userSlice = createSlice({
             }
             state.idSuccess = payload.data.success;
         },
-        [existMemberId.rejected]: (staet, { payload }) => {
+        [existMemberId.rejected]: (state, { payload }) => {
+            state.loading = false;
+            state.error = payload;
+        },
+        /*닉네임 중복 확인*/
+        [existMemberNickname.pending]: (state, { payload}) => {
+            state.loading = false;
+            state.error = payload;
+        },
+        [existMemberNickname.fulfilled]: (state, { payload }) => {
+            state.loading = false;
+            state.nickMsg = payload.data.data;
+            if (payload.data.data === null) {
+                state.nickErrorMsg = payload.data.error.message;
+            }
+            state.nickSuccess = payload.data.success;
+        },
+        [existMemberNickname.rejected]: (state, { payload }) => {
             state.loading = false;
             state.error = payload;
         },

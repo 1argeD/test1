@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { apis } from "../../../shared/axios"
+import { apis } from '../../shared/axios'
 
 
 const URL = {
@@ -10,6 +10,7 @@ const URL = {
 export const userLogin = createAsyncThunk(
     'user/login',
     async (payload,{ getState, rejectWithValue }) => {
+        console,log(payload);
         const { user } = getState();
         try {
             const config = {
@@ -35,6 +36,33 @@ export const userLogin = createAsyncThunk(
         }
     }
 );
+/*회원 가입*/
+    export const registerUser = createAsyncThunk(
+        'user/register',
+        async (payload, { rejectWithValue }) => {
+            console.log(payload);
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                };
+                const response = await axios.post(
+                    'http://localhost:8080.com/member/signup',
+                    payload,
+                    config
+                );
+                console.log(response);
+            } catch (error) {
+                if (error.respose && error.response.data.message) {
+                    return rejectWithValue(error.response.data.message);
+                } else {
+                    return rejectWithValue(error.message);
+                }
+            }
+        }
+    );
+
     //유저 로그아웃
     export const useroutUser = createAsyncThunk(
         'user/logout',
@@ -53,7 +81,7 @@ export const userLogin = createAsyncThunk(
     );
         //유저 아이디 체크
     export const existMemberId = createAsyncThunk(
-        'user.existMemberId',
+        'user/existMemberId',
         async (payload, { rejectWithValue }) => {
             try {
                 const config = {
@@ -66,9 +94,13 @@ export const userLogin = createAsyncThunk(
                     payload,
                     config
                 );
+                console.log(response);
+                return response;
             } catch (error) {
                 if (error.response && error.response.data.message) {
-                    return rejectWithValue(error.response)
+                    return rejectWithValue(error.response.data.message);
+                } else {
+                    return rejectWithValue(error.message);
                 }
             }
         }
@@ -83,10 +115,14 @@ export const userLogin = createAsyncThunk(
                     payload,
                     config
                 );
+                console.log(response);
+                return response;
             } catch (error) {
                 if (error.response && error.response.data.message) {
-                    return rejectWithValue(error.response)
+                    return rejectWithValue(error.response.data.message);
+                } else {
+                    return rejectWithValue(error.message);
                 }
             }
         }
-    )
+    );

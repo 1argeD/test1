@@ -1,6 +1,6 @@
 import React from "react";
-import ModalPortal from "../modal/Portal";
-import Modal from "../modal/Modal";
+import ModalPortal from "../elements/modal/Portal";
+import Modal from "../elements/modal/Modal";
 
 const GlobalModal = ({
   content1,

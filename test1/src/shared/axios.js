@@ -1,5 +1,4 @@
 import axios from "axios";
-import { appendErrors } from "react-hook-form";
 
 const base = {
     server_http: Process.env.REACT_APP_HTTP_URI
