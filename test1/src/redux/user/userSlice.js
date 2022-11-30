@@ -23,7 +23,7 @@ const inintialState = {
     idSuccess : true,
     nickSuccess : true,
     nickErrorMsg : null,
-    duplicatenickSuccess: true,
+    duplicateNickSuccess: true,
     loginSuccess: false,
     profileImg:'',
     loginInfo: {},
@@ -80,7 +80,7 @@ const userSlice = createSlice({
             localStorage.removeItem('refresh-token');
             localStorage.removeItem('user-info');
             state.loading = false;
-            state.loading = payload;
+            state.logoutInfo = payload;
             state.userToken = null;
             state.error = null;
         },

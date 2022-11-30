@@ -60,7 +60,7 @@ const SignupForm = () => {
 
     function email_check(email) {
         var regex =
-            /([\w-\.]+)@((\[[0-9]{1,3}]\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+            /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
         return email.trim() != "" && email != "undefined" && regex.test(email);
     }
 
@@ -228,11 +228,11 @@ const SignupForm = () => {
                                 },
                             })}
                             aria-invalid={
-                                !isDirty ? undefined : appendErrors.password ? "true" : "false"
+                                !isDirty ? undefined : errors.password ? "true" : "false"
                             }
                             name="password"
                             />
-                            {appendErrors.password && (
+                            {errors.password && (
                                 <HelperText2>
                                     {errors?.password?.message}
                                 </HelperText2>
@@ -332,7 +332,7 @@ const SignupForm = () => {
         </>
     );
 };
-export default SignupForm
+export default SignupForm;
 
 const FormWapper =  styled.div`
     padding-top: 9rem;

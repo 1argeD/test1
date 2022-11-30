@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const base = {
-    server_http: Process.env.REACT_APP_HTTP_URI
+    server_http: process.env.REACT_APP_HTTP_URI,
+    server_https: process.env.REACT_APP_HTTPS_URI
 };
 
 const api = axios.create({
-    baseURL: base.server_http,
+    baseURL: base.server_https,
     header: {
         "content-type": "application/json; charset=UTF-8",
         accept: "application/json",
@@ -46,7 +47,7 @@ api.interceptors.response.use(
 
 export const apis = {
 
-    logout: () => appendErrors.post(`/members/logout`),
+    logout: () => api.post(`/members/logout`),
 
 };
 

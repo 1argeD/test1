@@ -9,8 +9,8 @@ const URL = {
 
 export const userLogin = createAsyncThunk(
     'user/login',
-    async (payload,{ getState, rejectWithValue }) => {
-        console,log(payload);
+    async (payload, { getState, rejectWithValue }) => {
+        console.log(payload);
         const { user } = getState();
         try {
             const config = {
@@ -20,7 +20,7 @@ export const userLogin = createAsyncThunk(
             };
 
             const response = await axios.post(
-                'http://localhost:8080/members/login',
+                `http://localhost:8080/members/login`,
                 payload,
                 config
             );
@@ -36,6 +36,7 @@ export const userLogin = createAsyncThunk(
         }
     }
 );
+
 /*회원 가입*/
     export const registerUser = createAsyncThunk(
         'user/register',
@@ -48,7 +49,7 @@ export const userLogin = createAsyncThunk(
                     },
                 };
                 const response = await axios.post(
-                    'http://loclahost:8080/member/signup',
+                    `http://localhost:8080/member/signup`,
                     payload,
                     config
                 );
@@ -64,11 +65,12 @@ export const userLogin = createAsyncThunk(
     );
 
     //유저 로그아웃
-    export const useroutUser = createAsyncThunk(
+    export const logoutUser = createAsyncThunk(
         'user/logout',
         async (arg, { getState, rejectWithValue, fulfillWithValue }) => {
-            const { user } = await apis.logout();
+            const { user } = getState()
             try {
+                const response = await apis.logout();
                 return fulfillWithValue(response.data);
             } catch (error) {
                 if (error.response && error.response.data.message) {
@@ -90,7 +92,7 @@ export const userLogin = createAsyncThunk(
                     },
                 };
                 const response = await axios.post(
-                    'http://localhost:8080/members/email-check',
+                    `http://localhost:8080/members/email-check`,
                     payload,
                     config
                 );
@@ -110,8 +112,13 @@ export const userLogin = createAsyncThunk(
         'user/existMemberNickname',
         async (payload, { rejectWithValue }) => {
             try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                };
                 const response =await axios.post(
-                    'http://localhost:8080/members/nickname-check',
+                    `http://localhost:8080/members/nickname-check`,
                     payload,
                     config
                 );
