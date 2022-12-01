@@ -1,8 +1,9 @@
+import React from "react";
 import SignupForm from "../../components/register/SignupForm"
 import Layout from "./../../components/elements/GlobalLayout"
 import Header from "../../components/elements/GlobalHeader2"
 
-const signup = () => {
+const Signup = () => {
     return (
         <>
         <Header />
@@ -13,4 +14,4 @@ const signup = () => {
     );
 };
 
-export default signup;
+export default Signup;
