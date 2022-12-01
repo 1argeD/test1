@@ -7,7 +7,7 @@ import {
     existMemberNickname,
 } from '../user/userAction';
 
-const inintialState = {
+const initialState = {
     loading : false,
     userInfo : null,
     userToken: localStorage.getItem('access-token')
@@ -32,7 +32,7 @@ const inintialState = {
 
 const userSlice = createSlice({
     name: 'user',
-    inintialState,
+    initialState,
     reducer: {},
     extraReducers: {
         //유저 로그인
